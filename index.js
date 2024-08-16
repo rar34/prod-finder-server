@@ -31,7 +31,9 @@ async function run() {
     const productsCollection = client.db('prodFinder').collection('products');
 
     app.get("/products", async (req, res)=>{
-        console.log('pagination', req.query)
+        const page = parseInt(req.query.page)
+        const size = parseInt(req.query.size)
+        console.log('pagination', page, size)
         const result = await productsCollection.find().toArray();
         res.send(result);
     })
